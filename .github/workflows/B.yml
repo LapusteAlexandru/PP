@@ -18,9 +18,8 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@v2
         with:
-          name: myArtifact
-      - name: Read Variable from Artifact
-        run: |
-          variableValue=$(cat path/to/myArtifact/myVariable.txt)
-          echo "The variable value is $variableValue"
+          name: my-artifact
+
+      - name: Display Variable
+        run: cat ${{ github.workspace }}/my-artifact.txt
 
