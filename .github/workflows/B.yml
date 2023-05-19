@@ -1,37 +1,18 @@
 
-name: .NET Core Desktop
+name: B
 
 on:
-  pull_request:
-    branches: [ "master" ]
   repository_dispatch:
-    types: [workflow_completed]
+    types: [run-action-d]
 
 jobs:
-  trigger-job:
-
-    runs-on: windows-latest  # For a list of available runner types, refer to
-                             # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
-
+  action-d:
+    runs-on: ubuntu-latest
     steps:
-      - name: Trigger Action
-        run: |
-          # Query the GitHub API to get the status of the workflow run
-          WORKFLOW_RUN_ID=${{ github.run_id }}
-          STATUS=$(curl -s -X GET \
-            -H "Accept: application/vnd.github.v3+json" \
-            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-            "https://api.github.com/repos/LapusteAlexandru/HomeDemo/actions/runs/${WORKFLOW_RUN_ID}")
-          
-          # Extract the status from the response
-          RESULT=$(echo "$STATUS" | jq -r '.conclusion')
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-          # Trigger your desired action based on the result
-          if [ "$RESULT" = "success" ]; then
-            echo "The triggering action has completed successfully."
-            # Run your desired action here
-          else
-            echo "The triggering action has not completed successfully."
-          fi
-
+      # Add your desired steps for Action D
+      - name: Run Action D
+        run: echo "Action D is running"
    
