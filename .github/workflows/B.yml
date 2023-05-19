@@ -15,11 +15,8 @@ jobs:
       # Add your desired steps for Action D
       - name: Run Action B
         run: echo "Action B is running"
-      - name: Download Artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: my-artifact
-
-      - name: Display Variable
-        run: cat ${{ github.workspace }}/my-artifact.txt
+      - name: Display Payload Data
+        run: |
+          echo "Value 1: ${{ github.event.client_payload.value1 }}"
+          echo "Value 2: ${{ github.event.client_payload.value2 }}"
 
