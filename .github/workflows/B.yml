@@ -24,5 +24,6 @@ jobs:
         run: echo "Action B is running"
       - name: Display Payload Data
         run: |
-          echo $TEST_URL
+          echo "Value env: ${{ github.event.client_payload.Env }}"
+          echo "Value 1: ${{ github.event.client_payload.value1 }}"
 
