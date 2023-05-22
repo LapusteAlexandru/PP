@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Set Variable
         run: |
-          if [ "${{ github.event.client_payload.value1 }}" = "Stage" ]; then
+          if [ "${{ github.event.client_payload.Env }}" = "Stage" ]; then
             echo "Setting myVariable to value 1"
             echo "##[set-output name=TEST_URL]value Stageing url here"
           fi
@@ -23,5 +23,4 @@ jobs:
       - name: Display Payload Data
         run: |
           echo "Value env: ${{ github.event.client_payload.Env }}"
-          echo "Value 1: ${{ github.event.client_payload.value1 }}"
 
