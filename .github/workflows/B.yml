@@ -4,11 +4,18 @@ name: B
 on:
   repository_dispatch:
     types: [run-action-d]
-
+env:
+  TEST_URL: "default url"
 jobs:
   action-d:
     runs-on: ubuntu-latest
     steps:
+      - name: Set Variable
+        run: |
+          if [ "${{ github.event.client_payload.value1 }}" = "Stage" ]; then
+            echo "Setting myVariable to value 1"
+            echo "##[set-output name=TEST_URL]value Stageing url here"
+          fi
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -17,6 +24,5 @@ jobs:
         run: echo "Action B is running"
       - name: Display Payload Data
         run: |
-          echo "Value 1: ${{ github.event.client_payload.value1 }}"
-          echo "Value 2: ${{ github.event.client_payload.value2 }}"
+          echo $TEST_URL
 
