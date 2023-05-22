@@ -3,9 +3,9 @@ name: B
 
 on:
   repository_dispatch:
-    types: [run-action-d]
-env:
-  TEST_URL: "default url"
+    types: 
+      -run-action-d
+      -get_env
 jobs:
   action-d:
     runs-on: ubuntu-latest
