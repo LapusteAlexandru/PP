@@ -14,6 +14,7 @@ jobs:
     steps:
       - name: Set Variable
         run: |
+          echo "ENV_VAR=Default" >> $GITHUB_ENV
           if ( $env:github_event_name -eq "repository_dispatch"){
             if( $env:github_event_action -eq "run-action-d") {
               echo "ENV_VAR=value1" >> $GITHUB_ENV
