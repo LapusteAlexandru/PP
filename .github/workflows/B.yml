@@ -10,16 +10,13 @@ on:
       - run-action-z
 jobs:
   action-d:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Set Variable
         run: |
-          echo "ENV_VAR=default" >> $GITHUB_ENV
-          if [ "${{ github.event.action }}" == "a" ]; then
-            echo "ENV_VAR = A" >> $GITHUB_ENV
-          elif [ "${{ github.event.action }}" == "run-action-d" ]; then
-            echo "ENV_VAR = D" >> $GITHUB_ENV
-          fi
+          if ( $env:github.event.action -eq "run-action-d" ){
+            echo "ENV_VAR = D" >> $env:GITHUB_ENV
+          }
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -27,5 +24,5 @@ jobs:
       - name: Run Action B
         run: echo "Action B is running"
       - name: Use Environment Variable
-        run: echo $ENV_VAR
+        run: echo $env:ENV_VAR
 
