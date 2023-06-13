@@ -14,7 +14,6 @@ jobs:
         run: |
           if [ "${{ github.event.action }}" == "run-action-d" ]; then
             echo "ENV_VAR = D" >> $GITHUB_ENV
-          elif echo "ENV_VAR = NADA " >> $GITHUB_ENV
           fi
       - name: Checkout code
         uses: actions/checkout@v2
