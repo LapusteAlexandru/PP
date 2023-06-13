@@ -4,7 +4,7 @@ name: B
 on:
   repository_dispatch:
     types: 
-      -run-action-d
+      - [run-action-d]
 jobs:
   action-d:
     runs-on: ubuntu-latest
