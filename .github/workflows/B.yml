@@ -14,13 +14,13 @@ jobs:
     steps:
       - name: Set Variable
         run: |
-          echo "ENV_VAR=defaul" >> $GITHUB_ENV
-          if [ "$env:TYPE" -eq "run-action-d" ] {
-              echo "ENV_VAR=value1" >> $GITHUB_ENV
-            }
-            elseif [ "$env:TYPE" -eq "type2" ] {
-              echo "ENV_VAR=value2" >> $GITHUB_ENV
-            }
+          echo "ENV_VAR=default" >> $GITHUB_ENV
+          if ($env:TYPE -eq "run-action-d") {
+            echo "ENV_VAR=value1" >> $GITHUB_ENV
+          }
+          elseif ($env:TYPE -eq "run-action-z") {
+            echo "ENV_VAR=value2" >> $GITHUB_ENV
+          }
       - name: Use Environment Variable
-        run: echo %ENV_VAR%
+        run: echo $env:ENV_VAR
 
