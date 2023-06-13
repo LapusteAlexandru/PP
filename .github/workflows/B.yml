@@ -13,7 +13,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Set Variable
-        run: |
+        run: shell:|
           echo ENV_VAR=default >> $GITHUB_ENV
           IF "%GITHUB_EVENT_ACTION%"=="a" (
             echo ENV_VAR=A >> $GITHUB_ENV
