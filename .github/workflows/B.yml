@@ -2,6 +2,8 @@
 name: B
 
 on:
+  push:
+    branches: [ "master" ]
   repository_dispatch:
     types: 
       - run-action-d
