@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: Set Variable
         run: |
-          if ( $env:github.event.action -eq "run-action-d" ){
+          if ( $github.event.action -eq "run-action-d" ){
             echo "ENV_VAR = D" >> $env:GITHUB_ENV
           }
       - name: Checkout code
