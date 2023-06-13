@@ -14,14 +14,14 @@ jobs:
     steps:
       - name: Set Variable
         run: |
-          echo "ENV_VAR=dev" >> $GITHUB_ENV
-          if ("%GITHUB_EVENT_NAME%"=="repository_dispatch") 
-          {
-            if ("%GITHUB_EVENT_ACTION%"=="run-action-d")
-            {
+          echo "ENV_VAR=default" >> $GITHUB_ENV
+          if "%GITHUB_EVENT_NAME%"=="repository_dispatch" (
+            if "%GITHUB_EVENT_ACTION%"=="a" (
+              echo "ENV_VAR=A" >> $GITHUB_ENV
+            ) else if "%GITHUB_EVENT_ACTION%"=="run-action-d" (
               echo "ENV_VAR=D" >> $GITHUB_ENV
-            }
-          }
+            )
+          )
 
       - name: Use Environment Variable
         run: echo %ENV_VAR%
