@@ -24,4 +24,4 @@ jobs:
             }
           }
       - name: Use Environment Variable
-        run: echo $env:ENV_VAR
+        run: echo %ENV_VAR%
