@@ -14,6 +14,7 @@ jobs:
     steps:
       - name: Set Variable
         run: |
+          echo "ENV_VAR=default" >> $GITHUB_ENV
           if [ "${{ github.event.action }}" == "a" ]; then
             echo "ENV_VAR = A" >> $GITHUB_ENV
           elif [ "${{ github.event.action }}" == "run-action-d" ]; then
