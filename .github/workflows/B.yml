@@ -1,4 +1,3 @@
-
 name: B
 
 on:
@@ -8,6 +7,7 @@ on:
     types: 
       - run-action-d
       - run-action-z
+
 jobs:
   action-d:
     runs-on: windows-latest
@@ -15,14 +15,13 @@ jobs:
       - name: Set Variable
         run: |
           echo "ENV_VAR=Default" >> $GITHUB_ENV
-          if ( $env:github_event_name -eq "repository_dispatch"){
-            if( $env:github_event_action -eq "run-action-d") {
+          if ($env:github_event_name -eq "repository_dispatch") {
+            if ($env:github_event_action -eq "run-action-d") {
               echo "ENV_VAR=value1" >> $GITHUB_ENV
             }
-            elseif ( $env:github_event_action -eq "run-action-z" ) {
+            elseif ($env:github_event_action -eq "run-action-z") {
               echo "ENV_VAR=value2" >> $GITHUB_ENV
             }
           }
       - name: Use Environment Variable
-        run: echo %ENV_VAR%
-
+        run: echo $env:ENV_VAR
