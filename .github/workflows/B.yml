@@ -16,10 +16,10 @@ jobs:
         shell: bash
         run: |
           echo "ENV_VAR=Default" >> $GITHUB_ENV
-          if [ "$GITHUB_EVENT_ACTION" == "run-action-d" ]; then
-            echo "ENV_VAR=D" >> $GITHUB_ENV
-          elif [ "$GITHUB_EVENT_ACTION" == "run-action-z" ]; then
-            echo "ENV_VAR=Z" >> $GITHUB_ENV
+          if [ "${{ github.event.action }}" == "run-action-d" ]; then
+            echo "ENV_VAR = D" >> $GITHUB_ENV
+          elif [ "${{ github.event.action }}" == "run-action-z" ]; then
+            echo "ENV_VAR = Z" >> $GITHUB_ENV
           fi
       - name: Use Environment Variable
         run: echo $ENV_VAR
