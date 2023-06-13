@@ -10,9 +10,8 @@ jobs:
     steps:
       - name: Set Variable
         run: |
-          if [ "${{ github.event.client_payload.Env }}" = "Stage" ]; then
-            echo "Setting myVariable to value 1"
-            echo "##[set-output name=TEST_URL]value Stageing url here"
+          if [ "${{ github.event.client_payload.type }}" == "run-action-d" ]; then
+            echo "ENV=D" >> $GITHUB_ENV
           fi
       - name: Checkout code
         uses: actions/checkout@v2
@@ -20,7 +19,7 @@ jobs:
       # Add your desired steps for Action D
       - name: Run Action B
         run: echo "Action B is running"
-      - name: Display Payload Data
+      - name: Use Environment Variable
         run: |
-          echo "Value env: ${{ github.event.client_payload.Env }}"
+          echo $ENV
 
