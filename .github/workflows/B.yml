@@ -15,12 +15,12 @@ jobs:
       - name: Set Variable
         run: |
           echo "ENV_VAR=default" >> $GITHUB_ENV
-          if ($env:TYPE -eq "run-action-d") {
+          if ("%GITHUB_EVENT_ACTION%"=="run-action-d") {
             echo "ENV_VAR=value1" >> $GITHUB_ENV
           }
-          elseif ($env:TYPE -eq "run-action-z") {
+          elseif ("%GITHUB_EVENT_ACTION%"=="run-action-z") {
             echo "ENV_VAR=value2" >> $GITHUB_ENV
           }
       - name: Use Environment Variable
-        run: echo $env:ENV_VAR
+        run: echo %ENV_VAR%
 
