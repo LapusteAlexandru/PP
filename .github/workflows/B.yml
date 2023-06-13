@@ -3,14 +3,15 @@ name: B
 
 on:
   repository_dispatch:
-    types: [run-action-d]
+    types: 
+      -run-action-d
 jobs:
   action-d:
     runs-on: ubuntu-latest
     steps:
       - name: Set Variable
         run: |
-          if [ "${{ github.event.client_payload.type }}" == "run-action-d" ]; then
+          if [ "${{ github.event.action }}" == "run-action-d" ]; then
             echo "ENV_VAR = D" >> $GITHUB_ENV
           fi
       - name: Checkout code
