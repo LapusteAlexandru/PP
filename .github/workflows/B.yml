@@ -14,15 +14,13 @@ jobs:
     steps:
       - name: Set Variable
         run: |
-          if ( $github.event.action -eq "run-action-d" ){
-            echo "ENV_VAR = D" >> $env:GITHUB_ENV
-          }
-      - name: Checkout code
-        uses: actions/checkout@v2
+          echo "ENV_VAR=dev" >> $GITHUB_ENV
+          if "%GITHUB_EVENT_NAME%"=="repository_dispatch" (
+            if "%GITHUB_EVENT_ACTION%"=="run-action-d" (
+              echo "ENV_VAR=D" >> $GITHUB_ENV
+            )
+          )
 
-      # Add your desired steps for Action D
-      - name: Run Action B
-        run: echo "Action B is running"
       - name: Use Environment Variable
-        run: echo $env:ENV_VAR
+        run: echo %ENV_VAR%
 
