@@ -13,8 +13,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Set default Variable
-        run: |
-          Set-Variable -Name "ENV_VAR" -Value "Default"
+        run: Set-Variable -Name "ENV_VAR" -Value "Default"
       - name: Set Variable
         run: |
           if ($env:github_event_name -eq "repository_dispatch") {
