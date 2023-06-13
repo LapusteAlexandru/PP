@@ -12,9 +12,11 @@ jobs:
   action-d:
     runs-on: windows-latest
     steps:
-      - name: Set Variable
+      - name: Set default Variable
         run: |
           echo "ENV_VAR=Default" >> $GITHUB_ENV
+      - name: Set Variable
+        run: |
           if ($env:github_event_name -eq "repository_dispatch") {
             if ($env:github_event_action -eq "run-action-d") {
               echo "ENV_VAR=value1" >> $GITHUB_ENV
